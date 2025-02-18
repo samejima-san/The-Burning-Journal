@@ -1,0 +1,39 @@
+.sidebar{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.description{
+    text-overflow:ellipsis;
+    width: 100%;
+}
+
+.bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+}
+
+.surprise-button, .mute-button{
+    padding: 5% 10%;
+    margin-top: 5%;
+    background-color: rgba(0, 0, 0, 0.773);
+    border: 1px solid rgba(0, 0, 0, 0.773);
+    color: rgba(123, 182, 115, 255);
+    font-weight: bolder;
+    transition: transform 0.3s ease, padding, background-color 0.3s ease;
+}
+
+.surprise-button:hover, .mute-button:hover{
+    background-color: rgba(0, 0, 0, 0.949);
+    transform: scale(1.1); 
+    padding: 7% 13%; 
+    cursor: pointer;
+}

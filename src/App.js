@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import axios from "axios";
+import Home from "./pages/home";
+import Completed from "./pages/100percented";
+import Finished from "./pages/finished";
+import Milestones from "./pages/milestones";
+import RandomGame from "./pages/surpriseme";
+import Top10 from "./pages/top10played";
+import AllGames from "./pages/allgames";
+import Maincontent from "./components/maincontent";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:5099/games")
+            .then(res => setGames(res.data))
+            .catch(err => console.error(err));
+    }, []);
+
+    return (
+        <div>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Maincontent />}>
+                  <Route index element={<Home />} />
+                  <Route path="/all-games" element={<AllGames />} />
+                  <Route path="/most-played" element={<Top10 />} />
+                  <Route path="/milestones" element={<Milestones />} />
+                  <Route path="/completed" element={<Completed />} />
+                  <Route path="/finished" element={<Finished />} />
+                  <Route path="/surprise-me" element={<RandomGame />} />
+              </Route>
+            </Routes>
+          </Router>
+        </div>
+    );
 }
 
 export default App;

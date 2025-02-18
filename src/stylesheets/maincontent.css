@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main-container{
+    height: 500px;
+    width: 500px;
+    border: 2px solid rgb(74, 74, 74) ;
+    border-radius: 2%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: rgba(112, 166, 99, 255);
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: rgba(156, 47, 66, 255);
+}
