@@ -6,11 +6,11 @@ function Nav() {
   return (
         <div className="top">
             <nav className="navbar">
-                <Link href="/all-games">All Games</Link>
-                <Link href="/most-played">Top 10 Played Games</Link>
-                <Link href="/milestones">Milestones</Link>
-                <Link href="/completed">100%ed Games</Link>
-                <Link href="/finished">Finished Games</Link>
+                <Link to="/all-games">All Games</Link>
+                <Link to="/top10">Top 10 Played Games</Link>
+                <Link to="/milestones">Milestones</Link>
+                <Link to="/completed">100%ed Games</Link>
+                <Link to="/finished">Finished Games</Link>
             </nav>
         </div>
   );

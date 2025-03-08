@@ -26,7 +26,7 @@ function App() {
               <Route path="/" element={<Maincontent />}>
                   <Route index element={<Home />} />
                   <Route path="/all-games" element={<AllGames />} />
-                  <Route path="/most-played" element={<Top10 />} />
+                  <Route path="/top10" element={<Top10 />} />
                   <Route path="/milestones" element={<Milestones />} />
                   <Route path="/completed" element={<Completed />} />
                   <Route path="/finished" element={<Finished />} />

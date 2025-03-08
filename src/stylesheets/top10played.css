@@ -1,0 +1,60 @@
+.tenscreen{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.top10{
+    height: 95%;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back{
+    height: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.729);
+    color: rgba(123, 182, 115, 255);
+}
+
+.back > * {
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: larger;
+}
+
+.back p{
+    font-size: 140%;
+}
+
+.back a{
+    text-decoration: none;
+    color: rgba(123, 182, 115, 255);
+    font-weight: 200;
+    font-size: 150%;
+    transition: transform 1.0s ease, color;
+}
+
+.back a:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.item{
+    color: rgba(0, 0, 0, 0.724);
+    width: 100%;
+    height: 100px;
+    margin-left: 50%;
+    padding-bottom: 2%;
+}

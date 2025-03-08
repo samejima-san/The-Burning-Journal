@@ -1,3 +1,14 @@
+.main-container{
+    height: 500px;
+    width: 500px;
+    border: 6px solid rgb(74, 74, 74) ;
+    border-radius: 2%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: rgba(112, 166, 99, 255);
+}
+
 .sidebar{
     width: 50%;
     height: 100%;
@@ -7,9 +18,18 @@
     align-items: center;
 }
 
+
+
 .description{
-    text-overflow:ellipsis;
-    width: 100%;
+    display: block;
+    height: 100px;
+    color: rgba(123, 182, 115, 255);
+    background-color: rgba(0, 0, 0, 0.773);
+    padding: 5%;
+    font-size: small;
+    max-width: 80%;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 .bottom{
@@ -21,6 +41,19 @@
     height: 50%;
 }
 
+.gametitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mute-button{
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
 .surprise-button, .mute-button{
     padding: 5% 10%;
     margin-top: 5%;
@@ -29,6 +62,7 @@
     color: rgba(123, 182, 115, 255);
     font-weight: bolder;
     transition: transform 0.3s ease, padding, background-color 0.3s ease;
+    border-radius: 2%;
 }
 
 .surprise-button:hover, .mute-button:hover{

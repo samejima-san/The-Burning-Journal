@@ -4,12 +4,16 @@ import Nav from "./nav";
 import axios from "axios";
 
 function Home() {
-  const [GOTD, setGOTD] = useState([]);
+  const [GOTD, setGOTD] = useState([null]);
   const [gameinfo, setGameinfo] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
       axios.get("http://localhost:5099/GOTD")
-          .then(res => setGOTD(res.data))
+          .then(res => {
+            setGOTD(res.data);
+            setLoading(false);
+          })
           .catch(err => console.error(err));
   }, []);
   return (
@@ -20,11 +24,15 @@ function Home() {
         <button className="surprise-button" type="button">Surprise Me</button>
       </div>
       <div className="sidebar">
-        <img src={GOTD[1][0]?.cover?.url} alt="" />
-        <h3>Game of the day</h3>
-        <p key={GOTD[0]?.id} >{GOTD[0]?.vg_name || "loading"}</p>
-        <p className="description"> {GOTD[1][0]?.summary || "loading"}</p>
-        <button className="mute-button" type="button">mute</button>
+        <div className="image">
+          <img src={loading ? "loading" : GOTD[1][0]?.cover?.url} alt="" />
+        </div>
+        <div className="gametitle">
+          <h3>Game of the day</h3>
+          <p key={loading ? "loading" : GOTD[0]?.id} >{loading ? "loading" : GOTD[0]?.vg_name }</p>
+          <p className="description"> {loading ? "loading" : GOTD[1][0]?.summary}</p>
+          <button className="mute-button" type="button">mute</button>
+        </div>
       </div>
     </>
   );
