@@ -1,0 +1,88 @@
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 0fr));
+  gap: .5rem;
+  row-gap: 5rem;
+  padding: 1rem;
+  justify-content: center;
+  overflow-y: auto;
+}
+.game-tile {
+  text-align: center;
+  max-width: 100px;
+  max-height: 100px;
+}
+.game-tile:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.game-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.all-games {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal-content {
+  background: #111;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: white;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-info img{
+  min-height: 50px;
+  min-width: 50px;
+  max-width: 30%;
+  max-height: 30%;
+}
+
+.info{
+  width: 100%;
+  margin: 1rem;
+}
