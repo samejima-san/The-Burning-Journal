@@ -1,0 +1,58 @@
+i would want a page that lists all the games and hours
+
+🛠️ What Should You Build First?
+
+1️⃣ Basic UI: Display games from the database.
+2️⃣ Search & Filters: Let users filter and find games easily.
+3️⃣ Add/Edit/Delete: Make games editable and allow new ones to be added.
+5️⃣ Deploy Online!
+
+🔟 Gamified UI: "Level Up Your Library" 🎮
+
+💡 What it does:
+
+    Every time a user adds or completes a game, they earn XP & level up!
+    Show a progress bar & rewards (virtual achievements).
+
+🔥 How to build it:
+
+    Track XP points in the database.
+    Earn XP for adding, finishing, or reviewing games.
+    Display a "Level 5 Gamer" badge when they reach milestones!
+
+
+9️⃣ Dynamic Game Covers & Trailers 🎥
+
+💡 What it does:
+
+    Show official cover art and YouTube trailers for each game.
+
+🔥 How to build it:
+
+    Use RAWG API to get cover images.
+    Embed a YouTube trailer based on the game title.
+
+
+5️⃣ Random Game Picker: "What Should I Play?" 🎲
+
+💡 What it does:
+
+    Can’t decide what to play? Click a button, and the site randomly picks a game for you!
+
+🔥 How to build it:
+
+    Add a "Surprise Me!" button that selects a random game from your database.
+    Display game details + a fun message like:
+        "You should play Dark Souls! Are you brave enough? 😈"
+
+
+8️⃣ Game Soundtrack Player 🎵
+
+💡 What it does:
+
+    When you click a game, play its official soundtrack in the background!
+
+🔥 How to build it:
+
+    Use Spotify or YouTube API to search for the game’s OST.
+    Embed a music player on the game’s details page!
