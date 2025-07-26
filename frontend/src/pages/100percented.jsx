@@ -73,11 +73,11 @@ useEffect(() => {
           <div key={index} className="game-tile" onClick={() => setSelectedGame(game)} >
             <img
               src={game.game_art_url[1] || "/placeholder.png"}
-              alt={game.vg_name}
+              alt={game.cleanname}
               loading="lazy"
               className="game-img"
             />
-            <p>{game.vg_name}</p>
+            <p>{game.cleanname}</p>
           </div>
         ))}
       </div>
@@ -86,7 +86,7 @@ useEffect(() => {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="close-btn" onClick={() => setSelectedGame(null)}>×</button>
             <div className="game-info">
-              <h1>{selectedGame.vg_name}</h1>
+              <h1>{selectedGame.cleanname}</h1>
               <img src={selectedGame.game_art_url[0] || "/placeholder.png"} alt="" />
               <div className="info">
                 <p>Year Played: {selectedGame.year_played}</p>

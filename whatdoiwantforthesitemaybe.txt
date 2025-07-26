@@ -56,3 +56,29 @@ i would want a page that lists all the games and hours
 
     Use Spotify or YouTube API to search for the game’s OST.
     Embed a music player on the game’s details page!
+
+
+Collection Stats
+Total games in library
+Games completed / backlog left
+Completion rate (percentage finished)
+Most played genre(s)
+Most common platforms
+Average/total hours played 
+Oldest and newest games in collection
+Games added per year/month
+Progress & Achievements
+Longest streak of games completed
+Fastest completion time
+Badges or milestones (e.g., 10 RPGs finished, 100 games added)
+Visualizations
+Pie chart: Genre distribution
+Bar chart: Games completed per year
+Line graph: Library growth over time
+Heatmap: Playtime by month/week (if you track sessions)
+Fun Extras
+Random “Game of the Month”
+Most/least completed genres
+Top 5 longest/shortest games
+Wishlist vs. owned stats (if you track wishlists)
+start simple (totals, completion rate, genre breakdown)

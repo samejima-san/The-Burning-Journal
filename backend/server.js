@@ -9,8 +9,10 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
 });
 
+const origin = process.env.DEV === "dev" ? "*" : "https://theburningjournal.abandontheworld.com";
+
 app.use(cors({
-  origin: "https://theburningjournal.abandontheworld.com"
+  origin: origin
 }));
 app.use(express.json());
 
@@ -21,7 +23,7 @@ app.get("/tbj_games", async (req, res) => {
   try {
     // 1. Get games from the lib table
     const libResult = await pool.query(
-      "SELECT * FROM lib ORDER BY vg_id LIMIT $1 OFFSET $2;",
+      "SELECT * FROM lib ORDER BY vg_name LIMIT $1 OFFSET $2;",
       [limit, offset]
     );
 
@@ -31,9 +33,10 @@ app.get("/tbj_games", async (req, res) => {
     const enrichedGames = await Promise.all(
       games.map(async (game) => {
         const detailResult = await pool.query(
-          "SELECT * FROM game_details WHERE name = $1;",
-          [game.vg_name]
+          "SELECT * FROM game_details WHERE name = $1 OR name = $2;",
+          [game.cleanname, game.vg_name]
         );
+        console.log(`Enriching game: ${game.cleanname}`);
 
         if (detailResult.rows.length > 0) {
           return {
@@ -42,8 +45,7 @@ app.get("/tbj_games", async (req, res) => {
           };
         } else {
           // 3. If not found, query IGDB
-          console.log(`Fetching IGDB for game: ${game.vg_name}`);
-          const igdbData = await fetchFromIGDB(game.vg_name);
+          const igdbData = await fetchFromIGDB(game.cleanname);
 
           if (igdbData) {
             // 4. (Optional) Save it to the database
@@ -94,8 +96,8 @@ app.get("/tbj_games/completed", async (req, res) => {
     const enrichedGames = await Promise.all(
       games.map(async (game) => {
         const detailResult = await pool.query(
-          "SELECT * FROM game_details WHERE name = $1;",
-          [game.vg_name]
+          "SELECT * FROM game_details WHERE name = $1 OR name = $2;",
+          [game.cleanname, game.vg_name]
         );
 
         if (detailResult.rows.length > 0) {
@@ -105,8 +107,8 @@ app.get("/tbj_games/completed", async (req, res) => {
           };
         } else {
           // 3. Fallback to IGDB
-          console.log(`Fetching IGDB for game: ${game.vg_name}`);
-          const igdbData = await fetchFromIGDB(game.vg_name);
+          console.log(`Fetching IGDB for game: ${game.cleanname}`);
+          const igdbData = await fetchFromIGDB(game.cleanname);
 
           if (igdbData) {
             // 4. Optional: cache in game_details
@@ -157,7 +159,7 @@ app.get("/tbj_games/finished", async (req, res) => {
       games.map(async (game) => {
         const detailResult = await pool.query(
           "SELECT * FROM game_details WHERE name = $1;",
-          [game.vg_name]
+          [game.cleanname]
         );
 
         if (detailResult.rows.length > 0) {
@@ -167,8 +169,8 @@ app.get("/tbj_games/finished", async (req, res) => {
           };
         } else {
           // 3. Fallback to IGDB
-          console.log(`Fetching IGDB for game: ${game.vg_name}`);
-          const igdbData = await fetchFromIGDB(game.vg_name);
+          console.log(`Fetching IGDB for game: ${game.cleanname}`);
+          const igdbData = await fetchFromIGDB(game.cleanname);
 
           if (igdbData) {
             // 4. Optional: cache in game_details
@@ -212,7 +214,7 @@ app.get("/top10", async (req, res) => {
     );
     const gameResult = result.rows;
 
-    const gamenames = gameResult.map((i) => i.vg_name);
+    const gamenames = gameResult.map((i) => i.cleanname);
     const whereClause = gamenames.map((name) => `name = "${name}"`).join(" | ");
 
     const gamesQuery = `
@@ -270,7 +272,7 @@ app.get("/GOTD", async (req, res) => {
 
     const queryBody = `
       fields name,cover.url,summary;
-      search "${gameResult.vg_name}";
+      search "${gameResult.cleanname}";
       limit 1;
     `;
 
@@ -363,7 +365,7 @@ app.get("/surprise-me", async (req, res) => {
 
     const queryBody = `
       fields name,cover.url,summary;
-      search "${gameResult.vg_name}";
+      search "${gameResult.cleanname}";
       limit 1;
     `;
 
