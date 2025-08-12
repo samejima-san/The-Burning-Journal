@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../stylesheets/home.css";
+import GameControls from "../components/gamecontrols";
 import Nav from "./nav";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,25 +20,29 @@ function Home() {
           .catch(err => console.error(err));
   }, []);
   return (
-    <>
-      <Nav></Nav>
-      <div className="bottom">
-        <h2>Something New?</h2>
-        <button className="surprise-button" type="button" onClick={()=>(navigate("/surprise-me"))}>Surprise Me</button>
-      </div>
-      <div className="sidebar">
-        <div className="image">
-          <img   src={ loading ? "loading" : GOTD[1][0]?.cover?.url  ? `https:${GOTD[1][0]?.cover?.url.replace("t_thumb", "t_cover_big")}`: "fallback-image.jpg"
-  } alt="game art" />
+    <div className="game-wrapper">
+      <div className="main-container">
+        <Nav></Nav>
+        <div className="bottom">
+          <h2>Something New?</h2>
+          <button className="surprise-button" type="button" onClick={()=>(navigate("/surprise-me"))}>Surprise Me</button>
         </div>
-        <div className="gametitle">
-          <h3>Game of the day</h3>
-          <p key={loading ? "loading" : GOTD[0]?.id} >{loading ? "loading" : GOTD[0]?.vg_name }</p>
-          <p className="description"> {loading ? "loading" : GOTD[1][0]?.summary}</p>
-          <button className="mute-button" type="button">mute</button>
+        <div className="sidebar">
+          <div className="image">
+            <img src={ loading ? "loading" : GOTD[1][0]?.cover?.url  ? `https:${GOTD[1][0]?.cover?.url.replace("t_thumb", "t_cover_big")}`: "fallback-image.jpg"} alt="game art" />
+          </div>
+          <div className="gametitle">
+            <h3>Game of the day</h3>
+            <p key={loading ? "loading" : GOTD[0]?.id} >{loading ? "loading" : GOTD[0]?.vg_name }</p>
+            <p className="description"> {loading ? "loading" : GOTD[1][0]?.summary}</p>
+            <button className="mute-button" type="button">mute</button>
+          </div>
         </div>
+    </div>
+      <div className="controls">
+        <GameControls /> 
       </div>
-    </>
+    </div>
   );
 }
 

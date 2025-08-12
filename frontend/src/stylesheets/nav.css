@@ -36,3 +36,21 @@ nav a:hover{
     padding: 1% 2%; 
     cursor: pointer;
 }
+
+
+/* === Mobile Styles === */
+@media (max-width: 768px) {
+    .top {
+        width: 45%;  /* full width */
+        height: auto; /* let it size naturally */
+        flex-direction: column; /* stack vertically */
+        padding: 1rem;
+    }
+    .navbar {
+        width: 100%; /* full width */
+        height: auto; /* let it size naturally */
+        flex-direction: column; /* stack vertically */
+        align-items: center;
+    }
+
+}

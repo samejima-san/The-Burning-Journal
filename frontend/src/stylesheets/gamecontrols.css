@@ -1,0 +1,100 @@
+.controls-area {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.dpad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dpad .middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dpad button,
+.buttons button {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    background: #666;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 200px;
+}
+
+.a-button, .b-button {
+    border-radius: 50%;
+    background: crimson;
+    font-weight: bold;
+    margin: 1%;
+}
+
+.dpad .buttons{
+    width: 50%;
+}
+
+.up, .down, .left, .right, .a-button, .b-button {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background: #272727;
+    color: white;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.up:hover, .down:hover, .left:hover, .right:hover, .a-button:hover, .b-button:hover {
+    background: #555;
+}
+
+/* === Mobile Responsive Layout === */
+@media (max-width: 768px) {
+    .controls-area {
+        flex-direction: row; /* stack vertically */
+        align-items: center;
+        height: 90%;
+        padding: 0;
+        margin: 0;
+    }   
+
+    .dpad {
+        width: 50%;
+    }
+
+    .buttons {
+        flex-direction: row;
+        justify-content: center;
+        width: 40%;
+    }
+
+    /* Bigger buttons for touch */
+    .up, .down, .left, .right, .a-button, .b-button {
+        width: 60px;
+        height: 60px;
+        margin: 8px;
+    }
+
+    /* Slightly larger font on mobile buttons */
+    .dpad button,
+    .buttons button {
+        font-size: 1.5rem;
+    }
+}
