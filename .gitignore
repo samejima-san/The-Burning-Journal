@@ -38,3 +38,6 @@ coverage/
 
 # Specific files to ignore
 backend/gamedetails_service.js
+backend/tokenrefresh.js
+backend/tokenrefreshrelease.js
+
