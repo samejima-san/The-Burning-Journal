@@ -12,6 +12,7 @@
   max-width: 100px;
   max-height: 100px;
 }
+
 .game-tile:hover {
   transform: scale(1.05);
   transition: transform 0.2s ease-in-out;
@@ -23,11 +24,7 @@
   border-radius: 8px;
 }
 
-.all-games {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+.main-container {
     overflow: hidden;
 }
 

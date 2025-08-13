@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../stylesheets/top10played.css";
+import GameControls from "../components/gamecontrols";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -41,41 +42,46 @@ function Top10() {
   }
 
   return (
-    <div className="tenscreen">
-      <div className="back">
-        {console.log(`${API_BASE}top10`)}
-        <Link to="/">{">"}</Link>
-        <h1>Top 10 Games</h1>
-        <p>{currentTime.toLocaleTimeString([], {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true,
-        })}</p>
-      </div>
+    <div className="game-wrapper">
+      <div className="main-container">
+        <div className="back">
+          {console.log(`${API_BASE}top10`)}
+          <Link to="/">{">"}</Link>
+          <h1>Top 10 Games</h1>
+          <p>{currentTime.toLocaleTimeString([], {
+              hour: 'numeric',
+              minute: '2-digit',
+              hour12: true,
+          })}</p>
+        </div>
 
-      <div className="top10">
-        {loading ? (
-          <div className="item">loading...</div>
-        ) : Ten.length === 2 && Ten[0]?.length > 0 ? (
-          Ten[0].map((game, index) => (
-            <div key={index} className="item">
-              <div className="leftside">
-                <img src={reorderedImages[index]?.image_url} alt={game.vg_name} />
+        <div className="top10">
+          {loading ? (
+            <div className="item">loading...</div>
+          ) : Ten.length === 2 && Ten[0]?.length > 0 ? (
+            Ten[0].map((game, index) => (
+              <div key={index} className="item">
+                <div className="leftside">
+                  <img src={reorderedImages[index]?.image_url} alt={game.vg_name} />
+                </div>
+                <div className="rightside">
+                  <h3>Total hours played: {game.hours_played}</h3>
+                  <h2>{game.vg_name}</h2>
+                  <h3>Year I started playing: {game.year_played}</h3>
+                  <p>
+                    Completed:{" "}
+                    <input type="checkbox" checked={game.completed} disabled={!game.completed} />
+                  </p>
+                </div>
               </div>
-              <div className="rightside">
-                <h3>Total hours played: {game.hours_played}</h3>
-                <h2>{game.vg_name}</h2>
-                <h3>Year I started playing: {game.year_played}</h3>
-                <p>
-                  Completed:{" "}
-                  <input type="checkbox" checked={game.completed} disabled={!game.completed} />
-                </p>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>No data found.</p>
-        )}
+            ))
+          ) : (
+            <p>No data found.</p>
+          )}
+        </div>
+        <div className="controls">
+          <GameControls />
+        </div>
       </div>
     </div>
   );

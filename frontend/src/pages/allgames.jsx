@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import GameControls from "../components/gamecontrols";
 import { Link } from "react-router-dom";
 import "../stylesheets/allgames.css";
 
@@ -58,49 +59,54 @@ useEffect(() => {
 
 
   return (
-    <div className="all-games">
-        <div className="back">
-            <Link to="/">{">"}</Link>
-            <h1>All Games</h1>
-        <p>{currentTime.toLocaleTimeString([], {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true,
-        })}</p>
-      </div>
-      <div className="game-grid" ref={gameGridRef}>
-        {games.map((game, index) => (
-          <div key={index} className="game-tile" onClick={() => setSelectedGame(game)} >
-            <img
-              src={game.game_art_url[1] || "/placeholder.png"}
-              alt="game art"
-              loading="lazy"
-              className="game-img"
-            />
-            <p>{game.vg_name}</p>
-          </div>
-        ))}
-      </div>
-        {selectedGame && (
-        <div className="modal-overlay" onClick={() => setSelectedGame(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="close-btn" onClick={() => setSelectedGame(null)}>×</button>
-            <div className="game-info">
-              <h1>{selectedGame.vg_name}</h1>
-              <img src={selectedGame.game_art_url[0] || "/placeholder.png"} alt="" />
-              <div className="info">
-                <p>Year Played: {selectedGame.year_played}</p>
-                <p>Hours: {selectedGame.hours_played}</p>
-                <p>{selectedGame.rating === 0 || selectedGame.rating === null ? "Haven't Rated It Yet" : "Rating: " + selectedGame.rating }</p>
-                <p>Finished: {selectedGame.finished ?  "✔️ YES I DID ✔️" : "⏳ No...Cant Say That I Have" }</p>
-                <p>Completed: {selectedGame.completed ?  "✔️ YES I DID ✔️" : "⏳ No...Cant Say That I Have" }</p>
-              </div>
-              <p>{selectedGame.summary || "No summary available."}</p>
-            </div>
+    <div className="game-wrapper">
+      <div className="main-container">
+          <div className="back">
+              <Link to="/">{">"}</Link>
+              <h1>All Games</h1>
+          <p>{currentTime.toLocaleTimeString([], {
+              hour: 'numeric',
+              minute: '2-digit',
+              hour12: true,
+          })}</p>
         </div>
+        <div className="game-grid" ref={gameGridRef}>
+          {games.map((game, index) => (
+            <div key={index} className="game-tile" onClick={() => setSelectedGame(game)} >
+              <img
+                src={game.game_art_url[1] || "/placeholder.png"}
+                alt="game art"
+                loading="lazy"
+                className="game-img"
+              />
+              <p>{game.vg_name}</p>
+            </div>
+          ))}
+        </div>
+          {selectedGame && (
+          <div className="modal-overlay" onClick={() => setSelectedGame(null)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <button className="close-btn" onClick={() => setSelectedGame(null)}>×</button>
+              <div className="game-info">
+                <h1>{selectedGame.vg_name}</h1>
+                <img src={selectedGame.game_art_url[0] || "/placeholder.png"} alt="" />
+                <div className="info">
+                  <p>Year Played: {selectedGame.year_played}</p>
+                  <p>Hours: {selectedGame.hours_played}</p>
+                  <p>{selectedGame.rating === 0 || selectedGame.rating === null ? "Haven't Rated It Yet" : "Rating: " + selectedGame.rating }</p>
+                  <p>Finished: {selectedGame.finished ?  "✔️ YES I DID ✔️" : "⏳ No...Cant Say That I Have" }</p>
+                  <p>Completed: {selectedGame.completed ?  "✔️ YES I DID ✔️" : "⏳ No...Cant Say That I Have" }</p>
+                </div>
+                <p>{selectedGame.summary || "No summary available."}</p>
+              </div>
+          </div>
+        </div>
+  )}
+        {loading && <p>Loading more games...</p>}
       </div>
-)}
-      {loading && <p>Loading more games...</p>}
+       <div className="controls">
+        <GameControls /> 
+      </div>
     </div>
   );
 }

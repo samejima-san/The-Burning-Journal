@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../stylesheets/allgames.css";
+import GameControls from "../components/gamecontrols";
 
 function Finished() {
   const [games, setGames] = useState([]);
@@ -58,7 +59,8 @@ useEffect(() => {
 
 
   return (
-    <div className="all-games">
+    <div className="game-wrapper">
+    <div className="main-container">
         <div className="back">
             <Link to="/">{">"}</Link>
             <h1>Finished Games</h1>
@@ -98,9 +100,14 @@ useEffect(() => {
               <p>{selectedGame.summary || "No summary available."}</p>
             </div>
         </div>
+        
       </div>
 )}
       {loading && <p>Loading more games...</p>}
+      </div>
+      <div className="controls">
+        <GameControls />
+      </div>
     </div>
   );
 }

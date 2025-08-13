@@ -3,7 +3,7 @@
     display: flex;
     flex-wrap: wrap;
     height: 50%;
-    width: 50%;
+    max-width: 50%;
     align-items: center;
     justify-content: center;
 }
@@ -41,8 +41,8 @@ nav a:hover{
 /* === Mobile Styles === */
 @media (max-width: 768px) {
     .top {
-        width: 45%;  /* full width */
-        height: auto; /* let it size naturally */
+        width: 35%;  /* full width */
+        height: 55%; /* let it size naturally */
         flex-direction: column; /* stack vertically */
         padding: 1rem;
     }
@@ -51,6 +51,12 @@ nav a:hover{
         height: auto; /* let it size naturally */
         flex-direction: column; /* stack vertically */
         align-items: center;
+    }
+
+    nav a{
+        width: 100%; /* full width */
+        height: auto; /* let it size naturally */
+        margin: 0.5rem 0; /* spacing between links */
     }
 
 }
